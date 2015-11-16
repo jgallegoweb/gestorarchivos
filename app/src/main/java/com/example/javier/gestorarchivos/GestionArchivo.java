@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -43,5 +44,15 @@ public class GestionArchivo {
             e.printStackTrace();
         }
         return total;
+    }
+
+    public static ArrayList<File> getArchivos(String ruta){
+        File f = new File(ruta);
+        File lista[] = f.listFiles();
+        ArrayList<File> al = new ArrayList<>();
+        for(File fichero : lista){
+            al.add(fichero);
+        }
+        return al;
     }
 }

@@ -44,22 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void mostrarLista(){
         setTitle(directorios.get(directorios.size() - 1));
-        archivos = this.getArchivos(directorios.get(directorios.size() - 1));
+        archivos = GestionArchivo.getArchivos(directorios.get(directorios.size() - 1));
         Collections.sort(archivos, GestionArchivo.getComparator());
         adaptador = new Adaptador(this, R.layout.item, archivos);
         lvPrincipal.setAdapter(adaptador);
         lvPrincipal.setTag(archivos);
     }
 
-    private static ArrayList<File> getArchivos(String ruta){
-        File f = new File(ruta);
-        File lista[] = f.listFiles();
-        ArrayList<File> al = new ArrayList<>();
-        for(File fichero : lista){
-            al.add(fichero);
-        }
-        return al;
-    }
+
 
     public void accionarItem(View v){
         int pos = (int)v.getTag();
@@ -81,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     public void subir(View v){
         up();
     }
+
     private void up(){
         if(directorios.size()>1)
             directorios.remove(directorios.size() - 1);
